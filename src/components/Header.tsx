@@ -1,14 +1,15 @@
 import logo from "../assets/logo.svg";
 import menu from "../assets/icon-hamburger.svg";
 import close from "../assets/icon-close.svg";
-import { useState } from "react";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+interface Props {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleOpen: () => void;
+}
 
-  const handleOpen = () => {
-    setIsOpen(!isOpen);
-  };
+export default function Header(props: Props) {
+  const { isOpen, handleOpen } = props;
 
   return (
     <>

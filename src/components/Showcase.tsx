@@ -1,51 +1,30 @@
-import { useState } from "react";
 import arrow from "../assets/icon-arrow.svg";
 import left from "../assets/icon-angle-left.svg";
 import right from "../assets/icon-angle-right.svg";
 
-const data = [
-  {
-    id: 1,
-    title: "Discover innovative ways to decorate",
-    desc: "We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you and what you love.",
-    mobile: "./images/mobile-image-hero-1.jpg",
-    desktop: "./images/desktop-image-hero-1.jpg",
-  },
-  {
-    id: 2,
-    title: "We are available all across the globe",
-    desc: "With stores all over the world, it's easy for you to find furniture for your home or place of business. Locally, we're in most major cities throughout the country. Find the branch nearest you using our store locator. Any questions? Don't hesitate to contact us today.",
-    mobile: "./images/mobile-image-hero-2.jpg",
-    desktop: "./images/desktop-image-hero-2.jpg",
-  },
-  {
-    id: 3,
-    title: "Manufactured with the best materials",
-    desc: "Our modern furniture store provide a high level of quality. Our company has invested in advanced technology to ensure that every product is made as perfect and as consistent as possible. With three decades of experience in this industry, we understand what customers want for their home and office.",
-    mobile: "./images/mobile-image-hero-3.jpg",
-    desktop: "./images/desktop-image-hero-3.jpg",
-  },
-];
+interface Props {
+  items: {
+    id: number;
+    title: string;
+    desc: string;
+    mobile: string;
+    desktop: string;
+  }[];
+  data: {
+    id: number;
+    title: string;
+    desc: string;
+    mobile: string;
+    desktop: string;
+  }[];
+  slideIndex: number;
+  setSlideIndex: React.Dispatch<React.SetStateAction<number>>;
+  handleNextSlide: () => void;
+  handlePrevSlide: () => void;
+}
 
-export default function Showcase() {
-  const [items] = useState(data);
-  const [slideIndex, setSlideIndex] = useState(1);
-
-  const handleNextSlide = () => {
-    if (slideIndex !== items.length) {
-      setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === items.length) {
-      setSlideIndex(1);
-    }
-  };
-
-  const handlePrevSlide = () => {
-    if (slideIndex !== 1) {
-      setSlideIndex(slideIndex - 1);
-    } else if (slideIndex === 1) {
-      setSlideIndex(items.length);
-    }
-  };
+export default function Showcase(props: Props) {
+  const { items, slideIndex, handleNextSlide, handlePrevSlide } = props;
 
   return (
     <>
