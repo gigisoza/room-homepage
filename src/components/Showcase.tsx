@@ -29,6 +29,23 @@ const data = [
 
 export default function Showcase() {
   const [items] = useState(data);
+  const [slideIndex, setSlideIndex] = useState(1);
+
+  const handleNextSlide = () => {
+    if (slideIndex !== items.length) {
+      setSlideIndex(slideIndex + 1);
+    } else if (slideIndex === items.length) {
+      setSlideIndex(1);
+    }
+  };
+
+  const handlePrevSlide = () => {
+    if (slideIndex !== 1) {
+      setSlideIndex(slideIndex - 1);
+    } else if (slideIndex === 1) {
+      setSlideIndex(items.length);
+    }
+  };
 
   return (
     <>
@@ -36,7 +53,11 @@ export default function Showcase() {
         {items.map((item, index) => (
           <article
             key={item.id}
-            className="grid grid-cols-1 lg:grid-cols-2 lg:place-items-center"
+            className={
+              slideIndex === index + 1
+                ? "grid grid-cols-1 lg:grid-cols-2 lg:place-items-center"
+                : "hidden"
+            }
           >
             <div className="relative">
               <picture>
@@ -44,14 +65,20 @@ export default function Showcase() {
                 <img src={item.mobile} alt={item.title} className="w-full" />
               </picture>
 
-              <ul className="absolute -bottom-3 right-0 flex">
+              <ul className="absolute -bottom-2 right-0 flex">
                 <li>
-                  <button className="bg-black hover:bg-neutral-700 transition-all duration-200">
+                  <button
+                    onClick={handlePrevSlide}
+                    className="bg-black hover:bg-neutral-700 transition-all duration-200"
+                  >
                     <img src={left} alt="" className="p-6" />
                   </button>
                 </li>
                 <li>
-                  <button className="bg-black hover:bg-neutral-700 transition-all duration-200">
+                  <button
+                    onClick={handleNextSlide}
+                    className="bg-black hover:bg-neutral-700 transition-all duration-200"
+                  >
                     <img src={right} alt="" className="p-6" />
                   </button>
                 </li>

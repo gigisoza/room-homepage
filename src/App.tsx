@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import SectionTwo from "./components/SectionTwo";
 import Showcase from "./components/Showcase";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <Showcase />
+      <SectionTwo />
     </>
   );
 }
