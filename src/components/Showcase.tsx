@@ -1,5 +1,7 @@
 import { useState } from "react";
 import arrow from "../assets/icon-arrow.svg";
+import left from "../assets/icon-angle-left.svg";
+import right from "../assets/icon-angle-right.svg";
 
 const data = [
   {
@@ -32,18 +34,41 @@ export default function Showcase() {
     <>
       <section>
         {items.map((item, index) => (
-          <article key={item.id}>
-            <div>
+          <article
+            key={item.id}
+            className="grid grid-cols-1 lg:grid-cols-2 lg:place-items-center"
+          >
+            <div className="relative">
               <picture>
                 <source media="(min-width: 768px)" srcSet={item.desktop} />
-                <img src={item.mobile} alt={item.title} />
+                <img src={item.mobile} alt={item.title} className="w-full" />
               </picture>
+
+              <ul className="absolute -bottom-3 right-0 flex">
+                <li>
+                  <button className="bg-black hover:bg-neutral-700 transition-all duration-200">
+                    <img src={left} alt="" className="p-6" />
+                  </button>
+                </li>
+                <li>
+                  <button className="bg-black hover:bg-neutral-700 transition-all duration-200">
+                    <img src={right} alt="" className="p-6" />
+                  </button>
+                </li>
+              </ul>
             </div>
 
-            <div>
-              <h1>{item.title}</h1>
-              <p>{item.desc}</p>
-              <button>
+            <div className="p-8 lg:p-12">
+              <h1 className="text-slate-900 text-3xl lg:text-5xl">
+                {item.title}
+              </h1>
+              <p className="text-slate-900 opacity-75 my-6">{item.desc}</p>
+              <button
+                className="flex items-center gap-4 uppercase tracking-widest hover:opacity-75"
+                style={{
+                  letterSpacing: "0.7rem",
+                }}
+              >
                 Shop Now <img src={arrow} alt="" />
               </button>
             </div>
